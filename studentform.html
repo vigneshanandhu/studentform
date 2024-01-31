@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Form</title>
+   
+    <style>
+        
+        .color
+        {
+            background-color: aqua;
+            width: 175px;
+         }
+        button
+        {
+           background-color:red;
+  
+         }
+    </style>
+</head>
+<body>
+    <form>
+        <center>
+            <h1>STUDENT FORM</h1>
+            <table class="one" border="1">
+                <tr>
+                    <td>Name</td>
+                    <td><input id="name" type="text" placeholder="enter your name"></td>
+                </tr>
+                <tr>
+                    <td>Age</td>
+                    <td><input id="age" type="number" placeholder="enter your age"></td>
+                </tr>
+                <tr>
+                    <td>Gender</td>
+                    <td>
+                        <input id="male" type="radio" name="gender" value="male"><label for="male">Male</label>
+                        <input id="female" type="radio" name="gender"value="female"><label for="female">Female</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Course</td>
+                    <td> 
+                        <select id="course"> 
+                            <option>Python Programming</option>
+                            <option>CSS</option>
+                            <option>HTML</option>
+                            <option>Javascript</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Email</td>
+                    <td><input id="email" type="text" placeholder="enter your email"></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td>
+                        <button type="button" onclick="save()+refreshTable(event)" class="color">Save</button>
+                    </td>   
+                </tr>
+            </table>
+
+            <table class="two" border="1">
+                <tr>
+                    <td>NAME</td>
+                    <td>AGE</td>
+                  
+                    <td>GENDER</td>
+                    <td>COURSE</td>
+                    <td>EMAIL</td>
+                    <td>ACTION</td>
+                </tr>
+                
+            </table>
+        </center>
+    </form>
+    <script>
+        function save() 
+        {
+            var input1 = document.getElementById("name").value;
+            var input2 = document.getElementById("age").value;
+            var input3 = document.querySelector('input[name="gender"]:checked').value;
+            var input4 = document.getElementById("course").value;
+            var input5 = document.getElementById("email").value;
+            var table = document.querySelector(".two");
+            var tabledata = document.createElement("tr");
+            tabledata.innerHTML = '<td>' + input1 + '</td>' +
+                                  '<td>' + input2 + '</td>' +
+                                  '<td>' + input3 + '</td>' +
+                                  '<td>' + input4 + '</td>' +
+                                  '<td>' + input5 + '</td>' +
+                                  '<td><button onclick="deleteFunction(event)">Delete</button></td>';
+            table.appendChild(tabledata);
+            
+           
+        }
+        function refreshTable(event)
+        {
+            var table=document.querySelector(".one")
+            input1=document.getElementById("name").value = "";
+            input2=document.getElementById("age").value = "";
+            input3=document.querySelector('input[name="gender"]:checked');
+            input4=document.getElementById("course").value = "";
+            input5=document.getElementById("email").value = "";
+
+        }
+        function deleteFunction(event)
+        {
+            var row = event.target.parentNode.parentNode;
+            row.parentNode.removeChild(row);
+        }
+    </script>
+</body>
+</html>
